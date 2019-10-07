@@ -1,0 +1,7 @@
+{% block content %}
+    <ul>
+        {% for p in positions %}
+            <li><a href = "/getPosition?Position={{ p }}" > {{ p }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

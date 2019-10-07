@@ -1,0 +1,7 @@
+{% block content %}
+    <ul>
+        {% for j in players %}
+            <li> <a href="/getDetails?Player_Name={{ j }}">{{ j }}</a> </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

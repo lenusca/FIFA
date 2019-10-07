@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="document" type="documentType"/>
+  <xs:complexType name="FisicoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Height"/>
+      <xs:element type="xs:string" name="Weight"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="card_caracteristicsType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Passing"/>
+      <xs:element type="xs:string" name="Shooting"/>
+      <xs:element type="xs:string" name="Speed"/>
+      <xs:element type="xs:string" name="Handling"/>
+      <xs:element type="xs:string" name="Defending"/>
+      <xs:element type="xs:string" name="Physicality"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="otherType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Positioning"/>
+      <xs:element type="xs:string" name="Finishing"/>
+      <xs:element type="xs:string" name="Shot_Power"/>
+      <xs:element type="xs:string" name="Long_Shots"/>
+      <xs:element type="xs:string" name="Volleys"/>
+      <xs:element type="xs:string" name="Penalties"/>
+      <xs:element type="xs:string" name="Vision"/>
+      <xs:element type="xs:string" name="Crossing"/>
+      <xs:element type="xs:string" name="Free_Kick"/>
+      <xs:element type="xs:string" name="Short_Pass"/>
+      <xs:element type="xs:string" name="Long_Pass"/>
+      <xs:element type="xs:string" name="Pass_Curve"/>
+      <xs:element type="xs:string" name="Interceptions"/>
+      <xs:element type="xs:string" name="Heading"/>
+      <xs:element type="xs:string" name="Marking"/>
+      <xs:element type="xs:string" name="Standing_Tackle"/>
+      <xs:element type="xs:string" name="Sliding_Tackle"/>
+      <xs:element type="xs:string" name="Jumping"/>
+      <xs:element type="xs:string" name="Stamina"/>
+      <xs:element type="xs:string" name="Strength"/>
+      <xs:element type="xs:string" name="Aggression"/>
+      <xs:element type="xs:string" name="Diving"/>
+      <xs:element type="xs:string" name="Reflexes"/>
+      <xs:element type="xs:string" name="Kicking"/>
+      <xs:element type="xs:string" name="Positoning"/>
+      <xs:element name="Attacking_Workrate">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Med"/>
+            <xs:enumeration value="High"/>
+            <xs:enumeration value="Low"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Defensive_Workrate">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Med"/>
+            <xs:enumeration value="Low"/>
+            <xs:enumeration value="High"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Skill_Moves">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="footType">
+    <xs:sequence>
+      <xs:element name="Preferred_Foot">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Left"/>
+            <xs:enumeration value="Right"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Weak_Foot">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="positions_can_playType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="CB"/>
+      <xs:element type="xs:string" name="RB"/>
+      <xs:element type="xs:string" name="LB"/>
+      <xs:element type="xs:string" name="RWB"/>
+      <xs:element type="xs:string" name="LWB"/>
+      <xs:element type="xs:string" name="CDM"/>
+      <xs:element type="xs:string" name="CM"/>
+      <xs:element type="xs:string" name="RM"/>
+      <xs:element type="xs:string" name="LM"/>
+      <xs:element type="xs:string" name="CAM"/>
+      <xs:element type="xs:string" name="CF"/>
+      <xs:element type="xs:string" name="RF"/>
+      <xs:element type="xs:string" name="LF"/>
+      <xs:element type="xs:string" name="RW"/>
+      <xs:element type="xs:string" name="LW"/>
+      <xs:element type="xs:string" name="ST"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PlayerType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Player_Name"/>
+      <xs:element type="xs:string" name="Overall"/>
+      <xs:element type="xs:string" name="Club"/>
+      <xs:element type="xs:string" name="League"/>
+      <xs:element type="xs:string" name="Nationality"/>
+      <xs:element type="xs:string" name="Position"/>
+      <xs:element type="xs:string" name="Age"/>
+      <xs:element type="FisicoType" name="Fisico"/>
+      <xs:element type="xs:string" name="Pace"/>
+      <xs:element type="xs:string" name="Acceleration"/>
+      <xs:element type="xs:string" name="Sprint_Speed"/>
+      <xs:element type="xs:string" name="Dribbling"/>
+      <xs:element type="xs:string" name="Agility"/>
+      <xs:element type="xs:string" name="Balance"/>
+      <xs:element type="xs:string" name="Reactions"/>
+      <xs:element type="xs:string" name="Ball_Control"/>
+      <xs:element type="xs:string" name="Composure"/>
+      <xs:element type="card_caracteristicsType" name="card_caracteristics"/>
+      <xs:element type="otherType" name="other"/>
+      <xs:element type="footType" name="foot"/>
+      <xs:element type="positions_can_playType" name="positions_can_play"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="documentType">
+    <xs:sequence>
+      <xs:element type="PlayerType" name="Player" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
