@@ -1,7 +1,7 @@
 {% block content %}
     <ul>
         {% for p in positions %}
-            <li><a href = "/getPosition?Position={{ p }}" > {{ p }}</a></li>
+            <button class="button"><a href = "/players?Position={{ p }}" > {{ p }}</a></button>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -1,7 +1,32 @@
-{% block content %}
-    <ul>
-        {% for j in players %}
-            <li> <a href="/getDetails?Player_Name={{ j }}">{{ j }}</a> </li>
-        {% endfor %}
-    </ul>
-{% endblock %}
+<html>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: left; min-width: 257px;">NAME</th>
+                    <th style="min-width: 200px">RAT</th>
+                    <th style="min-width: 200px">POS</th>
+                    <th style="min-width: 200px">AGE</th>
+                    <th style="min-width: 200px">HEIGHT</th>
+                    <th style="min-width: 200px">WEIGHT</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for k,v in prates.items %}
+                    {% with y=pages|get_item:k y1=pheights|get_item:k y2=pweights|get_item:k y3=ppos|get_item:k %}
+                        <tr>
+                            <td style="min-width: 257px">{{ k }}</td>
+                            <td style="text-align: center; width: 200px">{{ v }}</td>
+                            <td style="text-align: center; min-width: 200px">{{ y3 }}</td>
+                            <td style="text-align: center; min-width: 200px">{{ y }}</td>
+                            <td style="text-align: center; min-width: 200px">{{ y1 }}</td>
+                            <td style="text-align: center; min-width: 200px">{{ y2 }}</td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</html>

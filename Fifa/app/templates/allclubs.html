@@ -1,0 +1,7 @@
+{% block content %}
+    <ul>
+        {% for c in clubs %}
+            <li><a href = "/players?Club={{ c }}" > {{ c }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
