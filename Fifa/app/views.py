@@ -100,12 +100,42 @@ def getDetails(request):
 
     # restantes jogadores
     else:
-        info['PAS'] = name.find('.//Passing').text
-        info['SHO'] = name.find('.//Shooting').text
-        info['PAC'] = name.find('.//').text
-     #   info['DRI'] = name.find('.//Dribbling').text
-        info['DEF'] = name.find('.//Defending').text
-        info['PHY'] = name.find('.//Physicality').text
+        ac = int(name.find('.//Acceleration').text)
+        ss = int(name.find('.//SprintSpeed').text)
+        pos = int(name.find('.//Positioning').text)
+        fis = int(name.find('.//Finishing').text)
+        sp = int(name.find('.//ShotPower').text)
+        ls = int(name.find('.//LongShots').text)
+        v = int(name.find('.//Volleys').text)
+        p = int(name.find('.//Penalties').text)
+        vi = int(name.find('.//Vision').text)
+        cro = int(name.find('.//Crossing').text)
+        accu = int(name.find('.//FKAccuracy').text)
+        spa = int(name.find('.//ShortPassing').text)
+        lpa = int(name.find('.//LongPassing').text)
+        curve = int(name.find('.//Curve').text)
+        ag = int(name.find('.//Agility').text)
+        ba = int(name.find('.//Balance').text)
+        re = int(name.find('.//Reactions').text)
+        bc = int(name.find('.//BallControl').text)
+        dr = int(name.find('.//Dribbling').text)
+        co = int(name.find('.//Composure').text)
+        inter = int(name.find('.//Interceptions').text)
+        ha = int(name.find('.//HeadingAccuracy').text)
+        defa = int(name.find('.//Marking').text)
+        stac = int(name.find('.//StandingTackle').text)
+        sltac = int(name.find('.//SlidingTackle').text)
+        jump = int(name.find('.//Jumping').text)
+        stamina = int(name.find('.//Stamina').text)
+        strength = int(name.find('.//Strength').text)
+        agr = int(name.find('.//Aggression').text)
+
+        info['PAS'] = str(int((vi+cro+accu+spa+lpa+curve)/6))
+        info['SHO'] = str(int((pos+fis+sp+ls+v+p)/6))
+        info['PAC'] = str(int((ac+ss)/2))
+        info['DRI'] = str(int((ag+ba+re+bc+dr+co)/6))
+        info['DEF'] = str(int((inter+ha+defa+stac+sltac)/5))
+        info['PHY'] = str(int((jump+stamina+strength+agr)/4))
 
     print(info)
     tparams = {
@@ -116,20 +146,21 @@ def getDetails(request):
 
 # Retorna todas as equipas existentes
 def allClubs(request):
-    fn = "app/data/fifa.xml"
+    fn = "app/data/players.xml"
     tree = ET.parse(fn)
-    query = './/Club'
+    query = '//Club'
 
     # Retorna todos os clubes dessa liga
-    if 'League' in request.GET:
-        arg = request.GET['League']
-        query = '//Player[League="{}"]'.format(arg)
+    #if 'League' in request.GET:
+     #   arg = request.GET['League']
+      #  query = '//Player[League="{}"]'.format(arg)
 
     clubs = tree.xpath(query)
-    info = []
+    info = dict()
     for c in clubs:
-        if c.find('Club').text not in info:
-            info.append(c.find('Club').text)
+        if c.find('Club_Name').text not in info :
+            info[c.find('Club_Name').text] = c.find('Club_Logo').text
+
     print(info)
     tparams = {
         'clubs': info
