@@ -1,0 +1,7 @@
+{% block content %}
+    <ul>
+        {% for c in countries %}
+            <li><a href = "/players?Nationality={{ c }}" > {{ c }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

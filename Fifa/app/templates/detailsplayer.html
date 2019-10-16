@@ -1,4 +1,9 @@
 {% block content %}
+    <head>
+        <title>{{ name }}</title>
+        <meta charset="UTF-8">
+
+    </head>
     <ul>
         {% for k, v in details.items %}
             <li> {{ k }}: {{ v }} </li>

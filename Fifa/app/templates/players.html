@@ -1,9 +1,15 @@
 <html>
+    <head>
+        <title>Players</title>
+        <meta charset="UTF-8">
 
+    </head>
+    <body>
     <div class="container">
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th style="text-align: left; min-width: 257px;">NAME</th>
                     <th style="min-width: 200px">RAT</th>
                     <th style="min-width: 200px">POS</th>
@@ -14,9 +20,10 @@
             </thead>
             <tbody>
                 {% for k,v in prates.items %}
-                    {% with y=pages|get_item:k y1=pheights|get_item:k y2=pweights|get_item:k y3=ppos|get_item:k %}
+                    {% with y=pages|get_item:k y1=pheights|get_item:k y2=pweights|get_item:k y3=ppos|get_item:k y4=images|get_item:k %}
                         <tr>
-                            <td style="min-width: 257px">{{ k }}</td>
+                            <td><img src="{{ y4 }}"></td>
+                            <td style="min-width: 257px"><a href = "/getDetails?Player_Name={{ k }}" > {{ k }}</a></td>
                             <td style="text-align: center; width: 200px">{{ v }}</td>
                             <td style="text-align: center; min-width: 200px">{{ y3 }}</td>
                             <td style="text-align: center; min-width: 200px">{{ y }}</td>
@@ -28,5 +35,5 @@
             </tbody>
         </table>
     </div>
-
+    </body>
 </html>
