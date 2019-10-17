@@ -110,12 +110,9 @@ def getDetails(request):
 
     if not 'Player_Name' in request.GET:
         raise Http404('Jogador não existe!!')
-
     arg = request.GET['Player_Name']
-    print(arg)
     pname = "//Player[Player_Name='{}']".format(arg)
     name = tree.find(pname)
-    print(name)
     info = dict()
 
 
@@ -167,7 +164,6 @@ def getDetails(request):
         info['DEF'] = str(int((inter+ha+defa+stac+sltac)/5))
         info['PHY'] = str(int((jump+stamina+strength+agr)/4))
 
-    print(info)
     tparams = {
         'details': info,
         'name':arg
@@ -191,7 +187,6 @@ def allClubs(request):
         if c.find('Club_Name').text not in info:
             info[c.find('Club_Name').text] = c.find('Club_Logo').text
 
-    print(info)
     tparams = {
         'clubs': info
     }
@@ -208,7 +203,6 @@ def allLeagues(request):
     for l in leagues:
         if l.text not in info:
             info.append(l.text)
-    print(info)
 
     tparams = {
         'leagues': info
