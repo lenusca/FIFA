@@ -1,5 +1,5 @@
-let $d := doc('players')/players
-for $e in $d//player//club[club_name/text()="FC Barcelona"]
+let $d := doc('FIFA')/Players
+for $e in $d/Player/Club[Club_Name/text()="FC Barcelona"]
 return delete node $e 
 
 
