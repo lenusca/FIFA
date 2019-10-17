@@ -225,7 +225,7 @@ def allCountries(request):
     for c in countries:
         if c.find('Nationality').text not in info:
             info[c.find('Nationality').text] = c.find('Flag').text
-    print(info)
+    
 
     tparams = {
         'countries': info
