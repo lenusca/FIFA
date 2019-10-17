@@ -13,29 +13,29 @@ from io import BytesIO
 #
 def index(request):
 
-    with open("app/players.xsd", 'r') as schema_file:
-        schema_to_check = schema_file.read().encode('utf-8')
-    with open("app/players.xml", 'r') as xml_file:
-        xml_to_check = xml_file.read().encode('utf-8')
-    xmlschema_doc = ET.parse(BytesIO(schema_to_check))
-    xmlschema = ET.XMLSchema(xmlschema_doc)
-    try:
-        doc = ET.parse(StringIO(xml_to_check))
-        print('XML well formed, syntax ok')
-    except IOError:
-        print('Invalid File')
-    except ET.XMLSyntaxError as err:
-        print('XML Syntax Error')
-    except:
-        print('Unknown error')
+    # with open("app/players.xsd", 'r') as schema_file:
+    #     schema_to_check = schema_file.read().encode('utf-8')
+    # with open("app/players.xml", 'r') as xml_file:
+    #     xml_to_check = xml_file.read().encode('utf-8')
+    # xmlschema_doc = ET.parse(BytesIO(schema_to_check))
+    # xmlschema = ET.XMLSchema(xmlschema_doc)
+    # try:
+    #     doc = ET.parse(StringIO(xml_to_check))
+    #     print('XML well formed, syntax ok')
+    # except IOError:
+    #     print('Invalid File')
+    # except ET.XMLSyntaxError as err:
+    #     print('XML Syntax Error')
+    # except:
+    #     print('Unknown error')
 
-    try:
-        xmlschema.assertValid(doc)
-        print('XML valid, schema validation ok.')
-    except ET.DocumentInvalid as err:
-        print('Schema validation error')
-    except:
-        print('Unknown error, exiting')
+    # try:
+    #     xmlschema.assertValid(doc)
+    #     print('XML valid, schema validation ok.')
+    # except ET.DocumentInvalid as err:
+    #     print('Schema validation error')
+    # except:
+    #     print('Unknown error, exiting')
 
     tparams = {
 
