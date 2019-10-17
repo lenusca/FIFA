@@ -30,12 +30,12 @@ def players(request):
     # Retorna os jogadores de cada equipa
     elif 'Club' in request.GET:
         arg = request.GET['Club']
-        query = '//Player[Club="{}"]'.format(arg)
+        query = '//Player[.//Club_Name="{}"]'.format(arg)
 
     # Retorna os jogadores de cada nacionalidade
     elif 'Nationality' in request.GET:
         arg = request.GET['Nationality']
-        query = '//player[Nationality="{}"]'.format(arg)
+        query = '//Player[.//Nationality="{}"]'.format(arg)
 
     ps = tree.xpath(query)
     for p in ps:
@@ -148,7 +148,7 @@ def getDetails(request):
 def allClubs(request):
     fn = "app/data/players.xml"
     tree = ET.parse(fn)
-    query = '//Club'
+    query = './/Club'
 
     # Retorna todos os clubes dessa liga
     #if 'League' in request.GET:
@@ -158,7 +158,7 @@ def allClubs(request):
     clubs = tree.xpath(query)
     info = dict()
     for c in clubs:
-        if c.find('Club_Name').text not in info :
+        if c.find('Club_Name').text not in info:
             info[c.find('Club_Name').text] = c.find('Club_Logo').text
 
     print(info)
@@ -186,15 +186,15 @@ def allLeagues(request):
     return render(request, "allLeagues.html", tparams)
 # Retorna todos os Paises
 def allCountries(request):
-    fn = "app/data/fifa.xml"
+    fn = "app/data/players.xml"
     tree = ET.parse(fn)
-    query = './/Nationality'
+    query = './/Country'
     countries = tree.xpath(query)
     #todos as ligas
-    info = []
+    info = dict()
     for c in countries:
-        if c.text not in info:
-            info.append(c.text)
+        if c.find('Nationality').text not in info:
+            info[c.find('Nationality').text] = c.find('Flag').text
     print(info)
 
     tparams = {

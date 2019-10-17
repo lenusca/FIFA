@@ -1,7 +1,7 @@
 {% block content %}
     <ul>
-        {% for c in countries %}
-            <li><a href = "/players?Nationality={{ c }}" > {{ c }}</a></li>
+        {% for k, v in countries.items %}
+            <li><img src="{{ v }}"><a href = "/players?Nationality={{ k }}" > {{ k }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

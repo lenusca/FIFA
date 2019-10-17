@@ -1,7 +1,7 @@
 {% block content %}
     <ul>
         {% for k, v in clubs.items %}
-            <li><img src="{{ v }}"> <a href = "/players?Club={{ k }}" > {{ k }}</a></li>
+            <li><img src="{{ v }}"> <a href = "/players?Club={{ k }}"> {{ k }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
