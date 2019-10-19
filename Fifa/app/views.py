@@ -2,12 +2,13 @@ from django.http import Http404
 from django.shortcuts import render
 from django.template.defaulttags import register
 from lxml import etree as ET
+from collections import OrderedDict
 #from django.shortcuts import render_to_response
 #from BaseXClient import BaseXClient
 #import xmltodict
 #import feedparser
 #import webbrowser
-from io import BytesIO 
+from io import BytesIO
 
 # Create your views here.
 #
@@ -77,7 +78,7 @@ def players(request):
         positions[p.find('Player_Name').text] = p.find('Position').text
 
     tparams = {
-        'prates': rates, #ordenar os jogadores por overall
+        'prates': rates,
         'images':images,
         'pages': ages,
         'pheights':heights,
@@ -219,10 +220,12 @@ def allCountries(request):
     for c in countries:
         if c.find('Nationality').text not in info:
             info[c.find('Nationality').text] = c.find('Flag').text
+    print(OrderedDict(sorted(info.items(), key=lambda x: x[0])))
+
     
 
     tparams = {
-        'countries': info
+        'countries': OrderedDict(sorted(info.items(), key=lambda x: x[0]))
     }
     return render(request, "allCountries.html", tparams)
 
