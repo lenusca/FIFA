@@ -185,11 +185,10 @@ def allClubs(request):
     clubs = tree.xpath(query)
     info = dict()
     for c in clubs:
-        if c.find('Club_Name').text not in info:
+        if c.find('Club_Name').text not in info and c.find('Club_Name').text != None:
             info[c.find('Club_Name').text] = c.find('Club_Logo').text
-
     tparams = {
-        'clubs': info
+        'clubs':  OrderedDict(sorted(info.items(), key=lambda x: x[0]))
     }
     return render(request, "allclubs.html", tparams)
 
@@ -209,6 +208,7 @@ def allLeagues(request):
         'leagues': info
     }
     return render(request, "allLeagues.html", tparams)
+
 # Retorna todos os Paises
 def allCountries(request):
     fn = "app/data/players.xml"
@@ -220,10 +220,6 @@ def allCountries(request):
     for c in countries:
         if c.find('Nationality').text not in info:
             info[c.find('Nationality').text] = c.find('Flag').text
-    print(OrderedDict(sorted(info.items(), key=lambda x: x[0])))
-
-    
-
     tparams = {
         'countries': OrderedDict(sorted(info.items(), key=lambda x: x[0]))
     }
