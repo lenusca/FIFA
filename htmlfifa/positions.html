@@ -11,61 +11,71 @@
 	
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
-			body {
-				background-image: url('images/campo_65.jpg');
-				background-attachment: fixed;
-				background-position: bottom;
-				background-repeat: no-repeat;
-				background-position-y: 50px;
-				background-color: indigo;
+			.camp {
+				background-image:  url('images/campo_65.jpg'), url('images/background.png');
+				background-position: center, top;
+				background-repeat: no-repeat, no-repeat;
+				background-size: contain, cover; 
+				background-attachment: fixed, fixed; 
+				
+				
 			}
 	
 		</style>
 		
 	</head>
-	<body class="homepage is-preload">
+	<body class="camp">
 		<div>
 			
 			<!-- Header -->
-				<div id= "header_new"  ></div>
+				<div id= "header_new" style="padding: 1.6em 0 1.6em 0em; " ></div>
 					
 
 
 					<!-- Nav -->
-						<nav id="nav" style="font-weight: bold;">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li>
-									<a href="#">Advanced Search</a>
-									<ul>
-										<li><a href="players.html">Players</a></li>
-										<li><a href="clubs.html">Clubs</a></li>
-										<li><a href="nationalities.html">Nacionalities</a></li>
-										<li><a href="positions.html">Positions</a></li>
-										<!--<li>
-											<a href="#">And a submenu &hellip;</a>
-											<ul>
-												<li><a href="#">Lorem ipsum dolor</a></li>
-												<li><a href="#">Phasellus consequat</a></li>
-												<li><a href="#">Magna phasellus</a></li>
-												<li><a href="#">Etiam dolore nisl</a></li>
-											</ul>
-										</li>-->
-									</ul>
-								</li>
-								<li><a href="cards.html">Player Cards</a></li>
-								<li><a href="addClub.html">Add a Club</a></li>
-								<li><a href="addPlayer.html">Add a Player</a></li>
-                                <li><a href="editPlayer.html">Edit Player</a></li>
-								
-							</ul>
-						</nav>
+					<nav id="nav" style="font-weight: bold;">
+						<ul>
+							<li><a href="index.html" style="color: white; font-weight: bold;">Home</a></li>
+							<li>
+								<a style="color: white; font-weight: bold;">Advanced Search</a>
+								<ul>
+									<li><a href="players.html">Players</a></li>
+									<li><a href="clubs.html">Clubs</a></li>
+									<li><a href="nationalities.html">Nacionalities</a></li>
+									<li><a href="positions.html">Positions</a></li>
+									<!--<li>
+										<a href="#">And a submenu &hellip;</a>
+										<ul>
+											<li><a href="#">Lorem ipsum dolor</a></li>
+											<li><a href="#">Phasellus consequat</a></li>
+											<li><a href="#">Magna phasellus</a></li>
+											<li><a href="#">Etiam dolore nisl</a></li>
+										</ul>
+									</li>-->
+								</ul>
+							</li>
+							<li><a style="color: white; font-weight: bold;" href="cards.html">Player Cards</a></li>
+							<li>
+								<a style="color: white; font-weight: bold;">Add</a>
+								<ul>
+									<li><a href="addPlayer.html">Player</a></li>
+									<li><a href="addGK.html">Goalkeeper</a></li>
+									<li><a href="addClub.html">Add a Club</a></li>
+								</ul>
+							</li>
+							
+							<li><a style="color: white; font-weight: bold;" href="editPlayer.html">Edit Player</a></li>
+						</ul>
+					</nav>
+
 						
 						<!--	<div>
 							<img src ="images/campo.jpg"  >
 						</div> -->
 						<div>
-							<div class="buttonGR" style="background-color: black; position: relative; left: 300px; top: 280px;">
+							
+								
+								<div class="buttonGR" style="background-color: black; position: relative; left: 300px; top: 280px;">
 								<li><a href="#">GK</a></li>
 							</div>
 							<div class="buttonGR" style="background-color: black; position: relative; left: 430px; top: 40px;">
@@ -146,16 +156,25 @@
 							</div>	
 							<div class="buttonGR" style="background-color: black; position:relative; right:450px; top: 150px;">
 								<li><a href="#">LS</a></li>
-							</div>						
+							</div>
+														
+								
+				
+			</div>	
 							
 						</div>
 						
 						
 				</div>
 				
-
+				
 			
 		</div>
+		<div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 514px;" >
+					
+					<p>&copy; Projeto EDC.</p><p>2019/2020</p>
+				
+			</div>
 		
 
 		<!-- Scripts -->
@@ -169,11 +188,5 @@
 			<script src="assets/js/main.js"></script>
 
 	</body>
-	<!--<body>
-			<div class="copyright" style="text-align: center; background-color: black; color: white;" >
-					
-					<p>&copy; Projeto EDC.</p><p>2019/2020</p>
-				
-			</div>
-	</body>-->
+	
 </html>

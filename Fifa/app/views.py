@@ -121,10 +121,10 @@ def getDetails(request):
     if name.find('.//Position').text == 'GK':
         info['REF'] = name.find('.//GKReflexes').text
         info['POS'] = name.find('.//GKPositioning').text
-        info['HEC'] = name.find('.//GKDiving').text
-        info['TMP'] = name.find('.//SprintSpeed').text
-        info['ABS'] = name.find('.//GKKicking').text
-        info['BSI'] = name.find('.//GKHandling').text
+        info['DIV'] = name.find('.//GKDiving').text
+        info['SPE'] = name.find('.//SprintSpeed').text
+        info['KIC'] = name.find('.//GKKicking').text
+        info['HAN'] = name.find('.//GKHandling').text
 
     # restantes jogadores
     else:

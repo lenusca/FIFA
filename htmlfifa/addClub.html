@@ -10,20 +10,32 @@
 		<meta charset="utf-8" />
 	
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.background {
+				background-image: url('images/background.png');
+				background-position: top;
+				background-repeat:  no-repeat;
+				background-size: cover; 
+				background-attachment: fixed; 
+				
+				
+			}
+	
+		</style>
 		
 	</head>
-	<body class="homepage is-preload">
+	<body class="background">
 		<div>
 			
 			<!-- Header -->
-				<div id= "header_new" >
+				<div id= "header_new" style="padding: 1.6em 0 1.6em 0em; " >
 
 					<!-- Nav -->
-						<nav id="nav" style="font-weight: bold;">
+					<nav id="nav" style="font-weight: bold; ">
 							<ul>
-								<li><a href="index.html">Home</a></li>
+								<li><a href="index.html" style="color: white; font-weight: bold;">Home</a></li>
 								<li>
-									<a href="#">Advanced Search</a>
+									<a style="color: white; font-weight: bold;">Advanced Search</a>
 									<ul>
 										<li><a href="players.html">Players</a></li>
 										<li><a href="clubs.html">Clubs</a></li>
@@ -40,27 +52,35 @@
 										</li>-->
 									</ul>
 								</li>
-								<li><a href="cards.html">Player Cards</a></li>
-								<li><a href="addClub.html">Add a Club</a></li>
-								<li><a href="addPlayer.html">Add a Player</a></li>
-                                <li><a href="editPlayer.html">Edit Player</a></li>
+								<li><a style="color: white; font-weight: bold;" href="cards.html">Player Cards</a></li>
+								<li>
+									<a style="color: white; font-weight: bold;">Add</a>
+									<ul>
+										<li><a href="addPlayer.html">Player</a></li>
+										<li><a href="addGK.html">Goalkeeper</a></li>
+										<li><a href="addClub.html">Add a Club</a></li>
+									</ul>
+								</li>
+								
+								<li><a style="color: white; font-weight: bold;" href="editPlayer.html">Edit Player</a></li>
 							</ul>
 						</nav>
 
+
 				</div>
 				
-				<form style="margin-left: 100px;margin-top: 20px;" >
-						<input class="submit" type= 'text' name= "name" placeholder="Name" style="width:500px;" >
+				<form style="margin-left: 32%;margin-top: 170px;" >
+						<input class="submit" type= 'text' name= "name" placeholder="Club Name" style="width:500px;" >
 				</form>
 
-				<form style="margin-left: 100px;margin-top: 20px; margin-bottom: 20px;">
+				<form style="margin-left: 32%; margin-top: 50px; margin-bottom: 20px;">
 						Select a Flag: <input type="file" name="myFile" placeholder="Sellect File">
 				</form>
 				
-				<button type="button" onclick="alert('Club added with success!')"  style="width:500px; background-color: rgb(212, 185, 28);margin-left: 100px; margin-bottom: 20px; height: 50px; border-radius: 8px; border-color: black;">Add Club</button>
+				<button type="button" onclick="alert('Club added with success!')"  style="font-size: 20px; width:500px; background-color:#FFD865;margin-left: 32%; margin-bottom: 20px; height: 50px; border-radius: 8px; border-color: black; margin-top:50px">Add Club</button>
 				
 		</div>
-		<div class="copyright" style="text-align: center; background-color: black; color: white;" >
+		<div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 11.2%;" >
 					
 			<p>&copy; Projeto EDC.</p><p>2019/2020</p>
 		
