@@ -1,39 +1,49 @@
-<html>
-    <head>
+{% extends "layout.html" %}
+<head>
         <title>Players</title>
         <meta charset="UTF-8">
 
     </head>
+{% block content %}
+
+  
     <body>
-    <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th style="text-align: left; min-width: 257px;">NAME</th>
-                    <th style="min-width: 200px">RAT</th>
-                    <th style="min-width: 200px">POS</th>
-                    <th style="min-width: 200px">AGE</th>
-                    <th style="min-width: 200px">HEIGHT</th>
-                    <th style="min-width: 200px">WEIGHT</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for k,v in prates.items %}
-                    {% with y=pages|get_item:k y1=pheights|get_item:k y2=pweights|get_item:k y3=ppos|get_item:k y4=images|get_item:k %}
-                        <tr>
-                            <td><img src="{{ y4 }}"></td>
-                            <td style="min-width: 257px"><a href = "/getDetails?Player_Name={{ k }}" > {{ k }}</a></td>
-                            <td style="text-align: center; width: 200px">{{ v }}</td>
-                            <td style="text-align: center; min-width: 200px">{{ y3 }}</td>
-                            <td style="text-align: center; min-width: 200px">{{ y }}</td>
-                            <td style="text-align: center; min-width: 200px">{{ y1 }}</td>
-                            <td style="text-align: center; min-width: 200px">{{ y2 }}</td>
-                        </tr>
-                    {% endwith %}
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    </body>
-</html>
+
+            <div class="limiter">
+					<div class="container-table100">
+						<div class="wrap-table100">
+							<div class="table100" style="margin-top: 5%;">
+								<table>
+									<thead>
+										<tr class="table100-head">
+										<th class="column1"></th>
+										<th class="column2">NAME</th>
+										<th class="column3">RAT</th>
+										<th class="column4">POS</th>
+										<th class="column5">AGE</th>
+										<th class="column6">HEIGHT</th>
+										<th class="column7">WEIGHT</th>
+									</tr>
+								</thead>
+								<tbody>
+                                    {% for k,v in prates.items %}
+                                        {% with y=pages|get_item:k y1=pheights|get_item:k y2=pweights|get_item:k y3=ppos|get_item:k y4=images|get_item:k %}
+									    <tr>
+										    <td class="column1"><img src="{{ y4 }}"></td>
+										    <td class="column2"><a href = "/getDetails?Player_Name={{ k }}" > {{ k }}</a></td>
+										    <td class="column3">{{ v }}</td>
+									    	<td class="column4">{{ y3 }}</td>
+										    <td class="column5">{{ y }}</td>
+										    <td class="column6">{{ y1 }}</td>
+										    <td class="column7">{{ y2 }}</td>
+									    </tr>
+                                        {% endwith %}
+                                    {% endfor %}
+								
+								</tbody>
+						</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

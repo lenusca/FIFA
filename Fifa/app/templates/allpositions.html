@@ -1,7 +1,189 @@
-{% block content %}
-    <ul>
-        {% for p in positions %}
-            <button class="button" style="border-radius:50%; left:420px; top: 50%"><a href = "/players?Position={{ p }}" > {{ p }}</a></button>
-        {% endfor %}
-    </ul>
-{% endblock %}
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>FIFA19</title>
+    
+        {% load staticfiles %}
+        <link rel="stylesheet" href='{% static "assets/css/main.css" %}'/>
+        <style>
+                .camp {
+                    background-image: url("{% static 'images/campo_65.jpg' %}"), url("{% static 'images/background.png' %}");
+                    background-position: center, top;
+                    background-repeat: no-repeat, no-repeat;
+                    background-size: contain, cover; 
+                    background-attachment: fixed, fixed; 
+                    
+                    
+                }
+        
+            </style>
+    </head>
+    <body class="camp">
+            <div>
+                
+                <!-- Header -->
+                    <div id= "header_new" style="padding: 1.6em 0 1.6em 0em; " ></div>
+                        
+    
+    
+                        <!-- Nav -->
+                        <nav id="nav" style="font-weight: bold;">
+                            <ul>
+                                <li><a href="index.html" style="color: white; font-weight: bold;">Home</a></li>
+                                <li>
+                                    <a style="color: white; font-weight: bold;">Advanced Search</a>
+                                    <ul>
+                                        <li><a href="/players/">Players</a></li>
+                                        <li><a href="clubs.html">Clubs</a></li>
+                                        <li><a href="nationalities.html">Nacionalities</a></li>
+                                        <li><a href="/positions/">Positions</a></li>
+                                        <!--<li>
+                                            <a href="#">And a submenu &hellip;</a>
+                                            <ul>
+                                                <li><a href="#">Lorem ipsum dolor</a></li>
+                                                <li><a href="#">Phasellus consequat</a></li>
+                                                <li><a href="#">Magna phasellus</a></li>
+                                                <li><a href="#">Etiam dolore nisl</a></li>
+                                            </ul>
+                                        </li>-->
+                                    </ul>
+                                </li>
+                                <li><a style="color: white; font-weight: bold;" href="cards.html">Player Cards</a></li>
+                                <li>
+                                    <a style="color: white; font-weight: bold;">Add</a>
+                                    <ul>
+                                        <li><a href="addPlayer.html">Player</a></li>
+                                        <li><a href="addGK.html">Goalkeeper</a></li>
+                                        <li><a href="addClub.html">Add a Club</a></li>
+                                    </ul>
+                                </li>
+                                
+                                <li><a style="color: white; font-weight: bold;" href="editPlayer.html">Edit Player</a></li>
+                            </ul>
+                        </nav>
+    
+                            
+                            <!--	<div>
+                                <img src ="images/campo.jpg"  >
+                            </div> -->
+                            <div>
+                                
+                                    
+                                    <div class="buttonGR" style="background-color: black; position: relative; left: 300px; top: 280px;">
+                                    <li><a href = "/players?Position=GK">GK</a></li>
+                                </div>
+                       s         <div class="buttonGR" style="background-color: black; position: relative; left: 430px; top: 40px;">
+                                    <li><a href = "../players?Position=LB">LB</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative;  left: 500px; top: 40px;">
+                                    <li><a href = "/players?Position=LWB"></a>LWB</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 310px; top: 280px;">
+                                    <li><a href = "/players?Position=CB">CB</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 245px; top: 180px;">
+                                        <li><a href = "/players?Position=LCB">LCB</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 320px; top: 180px;">
+                                        <li><a href = "/players?Position=LDM">LDM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 360px; top: 180px;">
+                                        <li><a href = "/players?Position=LCM">LCM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 60px; top: 430px;">
+                                        <li><a href = "/players?Position=RCB"></a>RCB</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 130px; top: 430px;">
+                                        <li><a href = "/players?Position=RDM"></a>RDM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 170px; top: 430px;">
+                                        <li><a href = "/players?Position=RCM"></a>RCM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 130px; top: 550px;">
+                                    <li><<a href = "/players?Position=RB">RB</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 60px; top: 550px;">
+                                    <li><a href = "/players?Position=RWB">RWB</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 80px; top: 280px;">
+                                        <li><a href = "/players?Position=CDM">CDM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 75px; top: 280px;">
+                                    <li><a href = "/players?Position=CM"></a>CM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 20px; top: 280px;">
+                                    <li><a href = "/players?Position=CAM"></a>CAM</a></li>
+                                </div>
+                                
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 200px; top: 550px;">
+                                    <li><a href = "/players?Position=RM">RM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 150px; top: 550px;">
+                                    <li><a href = "/players?Position=RAM">RAM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 325px; top: 40px;">
+                                    <li><a href = "/players?Position=LM"></a>LM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 270px; top: 40px;">
+                                    <li><a href = "/players?Position=LAM">LAM</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 170px; top: 550px;">
+                                    <li><a href = "/players?Position=RW">RW</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 120px; top: 550px;">
+                                    <li><a href = "/players?Position=RF">RF</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 300px; top: 40px;">
+                                    <li><a href = "/players?Position=LW">LW</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 250px; top: 40px;">
+                                    <li><a href = "/players?Position=LF">LF</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right:400px; top: 280px;">
+                                    <li><a href = "/players?Position=CF">CF</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; left: 1100px; top: 220px;">
+                                    <li><a href = "/players?Position=ST">ST</a></li>
+                                </div>
+                                <div class="buttonGR" style="background-color: black; position:relative; right: 370px; top: 550px;">
+                                    <li><a href = "/players?Position=RS">RS</a></li>
+                                </div>	
+                                <div class="buttonGR" style="background-color: black; position:relative; right:450px; top: 150px;">
+                                    <li><a href = "/players?Position=LS">LS</a></li>
+                                </div>
+                                                            
+                                    
+                    
+                </div>	
+                                
+                            </div>
+                            
+                            
+                    </div>
+                    
+                    
+                
+            </div>
+            <div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 514px;" >
+                        
+                        <p>&copy; Projeto EDC.</p><p>2019/2020</p>
+                    
+                </div>
+    
+        
+    
+    <!-- Scripts -->
+		<script src='{% static "assets/js/jquery.min.js"%}'></script>
+		<script src='{% static "assets/js/jquery.dropotron.min.js"%}'></script>
+		<script src='{% static "assets/js/jquery.scrolly.min.js"%}'></script>
+        <script src='{% static "assets/js/jquery.scrollex.min.js"%}'></script>
+		<script src='{% static "assets/js/browser.min.js"%}'></script>
+		<script src='{% static "assets/js/breakpoints.min.js"%}'></script>
+		<script src='{% static "assets/js/util.js"%}'></script>
+		<script src='{% static "assets/js/main.js"%}'></script>   
+        
+    </body>
+
+</html>

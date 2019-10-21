@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>FIFA19</title>
+    
+        {% load staticfiles %}
+        <link rel="stylesheet" href='{% static "assets/css/main.css" %}'/>
+        
+    </head>
+
+    <body class="body-bg">
+        <!--[if lt IE 8]>
+                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+        <!-- preloader area start -->
+        <div id="preloader">
+            <div class="loader"></div>
+        </div>
+        <!-- preloader area end -->
+        <!-- main wrapper start -->
+        <div class="horizontal-main-wrapper">
+            <!-- main header area start -->
+            <!-- Header -->
+				<div id= "header_new" style="padding: 1.6em 0 1.6em 0em; ">
+
+					<!-- Nav -->
+					<nav id="nav" style="font-weight: bold;">
+							<ul>
+								<li><a href="index.html" style="color: white; font-weight: bold;">Home</a></li>
+								<li>
+									<a style="color: white; font-weight: bold;">Advanced Search</a>
+									<ul>
+										<li><a href="/players/">Players</a></li>
+										<li><a href="templates/clubs.html">Clubs</a></li>
+										<li><a href="templates/nationalities.html">Nacionalities</a></li>
+										<li><a href="/positions/">Positions</a></li>
+										<!--<li>
+											<a href="#">And a submenu &hellip;</a>
+											<ul>
+												<li><a href="#">Lorem ipsum dolor</a></li>
+												<li><a href="#">Phasellus consequat</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Etiam dolore nisl</a></li>
+											</ul>
+										</li>-->
+									</ul>
+								</li>
+								<li><a style="color: white; font-weight: bold;" href="cards.html">Player Cards</a></li>
+								<li>
+									<a style="color: white; font-weight: bold;">Add</a>
+									<ul>
+										<li><a href="templates/addPlayer.html">Player</a></li>
+										<li><a href="templates/addGK.html">Goalkeeper</a></li>
+										<li><a href="templates/addClub.html">Add a Club</a></li>
+									</ul>
+								</li>
+								
+								<li><a style="color: white; font-weight: bold;" href="templates/editPlayer.html">Edit Player</a></li>
+							</ul>
+						</nav>
+
+				</div>
+                  <!-- main content area end -->
+    
+                  {% block content %} {% endblock %}
+           
+        </div>
+    
+        
+    
+    <!-- Scripts -->
+		<script src='{% static "assets/js/jquery.min.js"%}'></script>
+		<script src='{% static "assets/js/jquery.dropotron.min.js"%}'></script>
+		<script src='{% static "assets/js/jquery.scrolly.min.js"%}'></script>
+        <script src='{% static "assets/js/jquery.scrollex.min.js"%}'></script>
+		<script src='{% static "assets/js/browser.min.js"%}'></script>
+		<script src='{% static "assets/js/breakpoints.min.js"%}'></script>
+		<script src='{% static "assets/js/util.js"%}'></script>
+		<script src='{% static "assets/js/main.js"%}'></script>   
+        
+    </body>
+
+</html>

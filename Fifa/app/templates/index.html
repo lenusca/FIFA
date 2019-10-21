@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
 
-</body>
-</html>
+<div id="header"  >
+					
+<form style="margin-left: 23cm; font-weight: bold;" >
+    <a>Find out everything about a player:</a>
+    <input class="search" type= 'text' name= "search" placeholder="Players" >
+
+</form>
+
+
+<div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 4.6%;" >
+					
+    <p>&copy; Projeto EDC.</p><p>2019/2020</p>
+
+</div>
+</div>
+
+
+{% endblock %}

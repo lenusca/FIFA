@@ -56,7 +56,8 @@ def players(request):
     # Retorna todos os jogadores da posição selecionada
     if 'Position' in request.GET:
         arg = request.GET['Position']
-        query= '//Player[Position="{}"]'.format(arg)
+        query= '//Player[Position="{}"]'.format(arg.strip())
+
 
     # Retorna os jogadores de cada equipa
     elif 'Club' in request.GET:
@@ -76,6 +77,7 @@ def players(request):
         heights[p.find('Player_Name').text] = p.find('.//Height').text
         weights[p.find('Player_Name').text] = p.find('.//Weight').text
         positions[p.find('Player_Name').text] = p.find('Position').text
+
 
     tparams = {
         'prates': rates,
