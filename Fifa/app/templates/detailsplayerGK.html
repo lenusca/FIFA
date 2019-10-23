@@ -9,18 +9,18 @@
 				background-image:  url("{% static 'images/carta.png' %}"), url("{% static 'images/background.png' %}");
 				background-position: center, top;
 				background-repeat: no-repeat, no-repeat;
-				background-size: 28%, cover; 
-				background-attachment: fixed, fixed; 
-				
-				
+				background-size: 28%, cover;
+				background-attachment: fixed, fixed;
+
+
 			}
-	
+
 		</style>
-		
+
 	</head>
 	<body class="card">
 		<div>
-			
+
 			<!-- Header -->
 				<div id= "header_new" style="padding: 1.6em 0 1.6em 0em; " ></div>
 
@@ -55,29 +55,29 @@
 										<li><a href="addClub.html">Add a Club</a></li>
 									</ul>
 								</li>
-								
+
 								<li><a style="color: white; font-weight: bold;" href="editPlayer.html">Edit Player</a></li>
 							</ul>
 						</nav>
 
 					<div>
 						<div class="card_text" style=" position: relative; left: 40.1%; top: 490px;">
-							<li>{{ details.PAS }} PAS</li>
+							<li>{{ details.DIV }} DIV</li>
 						</div>
 						<div class="card_text" style=" position: relative; left: 31.5%; top: 440px;">
-							<li>{{ details.SHO }} SHO</li>
+							<li>{{ details.HAN }} HAN</li>
 						</div>
 						<div class="card_text" style=" position: relative; left: 22.35%; top: 390px;">
-							<li>{{ details.PAC }} PAC</li>
+							<li>{{ details.KIC }} KIC</li>
 						</div>
 						<div class="card_text" style=" position: relative; left: 24.5%; top: 490px;">
-							<li>{{ details.PHY }} PHY</li>
+							<li>{{ details.REF }} REF</li>
 						</div>
 						<div class="card_text" style=" position: relative; left: 15.5%; top: 440px;">
-							<li>{{ details.DEF }} DEF</li>
+							<li>{{ details.SPE }} SPE</li>
 						</div>
 						<div class="card_text" style=" position: relative; left: 6.3%; top: 390px;">
-							<li>{{ details.DRI }} DRI</li>
+							<li>{{ details.POS }} POS</li>
 						</div>
 						<div class="nome_cartao" style=" position: relative; right: 15.5%; top: 335px; text-align: center;">
 							<li>{{ name }}</li>
@@ -88,8 +88,8 @@
 						<div class="card_text" style=" position: relative; right: 47.2%; top: 260px;">
 							<li><img src="{{ club }}" width="50" height="50"></li>
 						</div>
-						
-						
+
+
 						<div class="card_text" style=" position: relative; left: 47.5%; top: 65px;">
 							<li><img src="{{ img }}" width="200" height="200"></li>
 						</div>
@@ -100,21 +100,21 @@
 							<li style="font-size: 80px;">{{ rat }}</li>
 						</div>
 						<button type="button" onclick="alert('Player deleted with success!')"  style="font-size: 20px; width:200px;position: absolute; background-color:#FFD865;left: 1240px; top: 400px; height: 50px; border-radius: 8px; border-color: black;">Delete player</button>
-						<button type="button"  href="editPlayer.html" style="font-size: 20px; width:200px; background-color:#FFD865;position:absolute;left: 100px; top: 400px; height: 50px; border-radius: 8px; border-color: black;">Edit player</button>			
+						<button type="button"  href="editPlayer.html" style="font-size: 20px; width:200px; background-color:#FFD865;position:absolute;left: 100px; top: 400px; height: 50px; border-radius: 8px; border-color: black;">Edit player</button>
 					</div>
-					
-				
-				
 
-			
+
+
+
+
 		</div>
-		
-			
-		
-		<div class="copyright" style="text-align: center; background-color: black; color: white;margin-top: 22.5%;" >
-					
+
+
+
+		<div class="copyright" style="text-align: center; background-color: black; color: white;margin-top: 22.6%;" >
+
 			<p>&copy; Projeto EDC.</p><p>2019/2020</p>
-		
+
 		</div>
 
 		<!-- Scripts -->
@@ -125,8 +125,8 @@
 		<script src='{% static "assets/js/browser.min.js"%}'></script>
 		<script src='{% static "assets/js/breakpoints.min.js"%}'></script>
 		<script src='{% static "assets/js/util.js"%}'></script>
-		<script src='{% static "assets/js/main.js"%}'></script>   
+		<script src='{% static "assets/js/main.js"%}'></script>
 
 	</body>
-	
+
 </html>

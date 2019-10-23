@@ -43,7 +43,30 @@ section, summary, time, mark, audio, video {
 
 	
 }
+.card_text{
+	
+	width: 3.5em;
+	height: 2em;
+	line-height: 2.5em;
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	display: inline-block;
+	color:rgba(49, 48, 48, 0.75);
+	padding: 0% 0% 0% 0%;
+	
+}
+.nome_cartao{
+	width: 10em;
+	height: 2em;
+	line-height: 2.5em;
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	display: inline-block;
+	color:rgba(49, 48, 48, 0.75);
 
+}
 	body {
 		background: #f0f4f4;
 		color: #5b5b5b;

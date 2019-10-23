@@ -10,13 +10,25 @@
 		<meta charset="utf-8" />
 	
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.card {
+				background-image:  url('images/carta.png'), url('images/background.png');
+				background-position: center, top;
+				background-repeat: no-repeat, no-repeat;
+				background-size: 28%, cover; 
+				background-attachment: fixed, fixed; 
+				
+				
+			}
+	
+		</style>
 		
 	</head>
-	<body class="homepage is-preload">
+	<body class="card">
 		<div>
 			
 			<!-- Header -->
-				<div id= "header_new" >
+				<div id= "header_new" style="padding: 1.6em 0 1.6em 0em; " ></div>
 
 					<!-- Nav -->
 					<nav id="nav" style="font-weight: bold;">
@@ -54,17 +66,62 @@
 							</ul>
 						</nav>
 
-
-				</div>
+					<div>
+						<div class="card_text" style=" position: relative; left: 40.1%; top: 490px;">
+							<li>00 PAS</li>
+						</div>
+						<div class="card_text" style=" position: relative; left: 31.5%; top: 440px;">
+							<li>00 SHO</li>
+						</div>
+						<div class="card_text" style=" position: relative; left: 22.35%; top: 390px;">
+							<li>00 PAC</li>
+						</div>
+						<div class="card_text" style=" position: relative; left: 24.5%; top: 490px;">
+							<li>00 PHY</li>
+						</div>
+						<div class="card_text" style=" position: relative; left: 15.5%; top: 440px;">
+							<li>00 DEF</li>
+						</div>
+						<div class="card_text" style=" position: relative; left: 6.3%; top: 390px;">
+							<li>00 DRI</li>
+						</div>
+						<div class="nome_cartao" style=" position: relative; right: 15.5%; top: 335px; text-align: center;">
+							<li>NOMEB</li>
+						</div>
+						<div class="card_text" style=" position: relative; right:38.5%; top: 110px">
+							<li style="font-size: 30px">POS</li>
+						</div>
+						<div class="card_text" style=" position: relative; right: 47.2%; top: 260px;">
+							<li><img src="https://cdn.sofifa.org/teams/2/light/241.png" width="50" height="50"></li>
+						</div>
+						
+						
+						<div class="card_text" style=" position: relative; left: 47.5%; top: 65px;">
+							<li><img src="https://cdn.sofifa.org/players/4/19/158023.png" width="200" height="200"></li>
+						</div>
+						<div class="card_text" style="  left: 38.5%; position: absolute;top:250px; z-index: 10;">
+							<li><img src="https://cdn.sofifa.org/flags/52.png" width="70" height="40"></li>
+						</div>
+						<div class="card_text" style="position: absolute; right:53%; top: 120px;">
+							<li style="font-size: 80px;">00</li>
+						</div>
+						<button type="button" onclick="alert('Player deleted with success!')"  style="font-size: 20px; width:200px;position: absolute; background-color:#FFD865;left: 1240px; top: 400px; height: 50px; border-radius: 8px; border-color: black;">Delete player</button>
+						<button type="button"  href="editPlayer.html" style="font-size: 20px; width:200px; background-color:#FFD865;position:absolute;left: 100px; top: 400px; height: 50px; border-radius: 8px; border-color: black;">Edit player</button>			
+					</div>
+					
+				
 				
 
 			
 		</div>
-		<div class="copyright" style="text-align: center; background-color: black; color: white;" >
+		
+			
+		
+		<div class="copyright" style="text-align: center; background-color: black; color: white;margin-top: 22.5%;" >
 					
 			<p>&copy; Projeto EDC.</p><p>2019/2020</p>
 		
-	</div>
+		</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -77,4 +134,5 @@
 			<script src="assets/js/main.js"></script>
 
 	</body>
+	
 </html>

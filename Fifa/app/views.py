@@ -90,6 +90,7 @@ def players(request):
 
     return render(request, "players.html", tparams)
 
+
 # Retorna todas as posições
 def allPositions(request):
     fn = "app/data/players.xml"
@@ -127,6 +128,17 @@ def getDetails(request):
         info['SPE'] = name.find('.//SprintSpeed').text
         info['KIC'] = name.find('.//GKKicking').text
         info['HAN'] = name.find('.//GKHandling').text
+        tparams = {
+        'details': info,
+        'name': arg,
+        'club': name.find('.//Club_Logo').text,
+        'nat': name.find('.//Flag').text,
+        'rat': name.find('Overall').text,
+        'pos': name.find('Position').text,
+        'img': name.find('Photo').text,
+        }
+        return render(request, "detailsplayerGK.html", tparams)
+
 
     # restantes jogadores
     else:
@@ -169,7 +181,12 @@ def getDetails(request):
 
     tparams = {
         'details': info,
-        'name':arg
+        'name': arg,
+        'club': name.find('.//Club_Logo').text,
+        'nat': name.find('.//Flag').text,
+        'rat': name.find('Overall').text,
+        'pos': name.find('Position').text,
+        'img': name.find('Photo').text,
     }
     return render(request, "detailsplayer.html", tparams)
 
