@@ -1,11 +1,14 @@
 from django.http import Http404
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.template.defaulttags import register
 from lxml import etree as ET
 from collections import OrderedDict
+import xmltodict
+from BaseXClient import BaseXClient
 #from django.shortcuts import render_to_response
-#from BaseXClient import BaseXClient
-#import xmltodict
+
+
 #import feedparser
 #import webbrowser
 from io import BytesIO
@@ -37,13 +40,62 @@ def index(request):
     #     print('Schema validation error')
     # except:
     #     print('Unknown error, exiting')
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+    if 'search' in request.POST:
+        images = dict()
+        rates = dict()
+        positions = dict()
+        ages = dict()
+        heights = dict()
+        weights = dict()
+        player_to_be_searched = request.POST.get("search")
+        try:
+            input = """
+                          import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                          funcs:showPlayersName('{}')
+                          """.format(player_to_be_searched)
+            query = session.query(input)
+            res = query.execute()
+            query.close()
+        finally:
+            if session:
+                session.close()
+
+        dres = xmltodict.parse(res)
+        lres = dres['Players']['Player']
+        if(isinstance(lres,dict)):
+            rates[lres['Player_Name']] = lres['Overall']
+            images[lres['Player_Name']] = lres['Photo']
+            ages[lres['Player_Name']] = lres['Age']
+            heights[lres['Player_Name']] = lres['Phisic']['Height']
+            weights[lres['Player_Name']] = lres['Phisic']['Weight']
+            positions[lres['Player_Name']] = lres['Position']
+        else:
+            for l in lres:
+                rates[l['Player_Name']] = l['Overall']
+                images[l['Player_Name']] = l['Photo']
+                ages[l['Player_Name']] = l['Age']
+                heights[l['Player_Name']] = l['Phisic']['Height']
+                weights[l['Player_Name']] = l['Phisic']['Weight']
+                positions[l['Player_Name']] = l['Position']
+
+        tparams = {
+            'prates': rates,
+            'images': images,
+            'pages': ages,
+            'pheights': heights,
+            'pweights': weights,
+            'ppos': positions,
+        }
+        return render(request, 'players.html', tparams)
 
     tparams = {
 
     }
     return render(request, "index.html", tparams )
+
 # All the players
-def players(request):
+def players2(request):
     fn = "app/data/players.xml"
     tree = ET.parse(fn)
     images = dict()
@@ -90,6 +142,67 @@ def players(request):
 
     return render(request, "players.html", tparams)
 
+def players(request):
+    images = dict()
+    rates = dict()
+    positions = dict()
+    ages = dict()
+    heights = dict()
+    weights = dict()
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+
+    if 'Position' in request.GET:
+        try:
+            input = """
+                       import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                       funcs:showPlayersPosition('{}')
+                       """.format(request.GET['Position'])
+            query = session.query(input)
+            res = query.execute()
+            query.close()
+        finally:
+            if session:
+                session.close()
+
+        dres = xmltodict.parse(res)
+
+
+
+    else:
+
+        try:
+            input = """
+                    import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                    funcs:showPlayers()
+                    """
+            query = session.query(input)
+            res = query.execute()
+            query.close()
+        finally:
+            if session:
+                session.close()
+
+        dres = xmltodict.parse(res)
+
+    lres = dres['Players']['Player']
+
+    for l in lres:
+        rates[l['Player_Name']] = l['Overall']   
+        images[l['Player_Name']] = l['Photo']
+        ages[l['Player_Name']] = l['Age']
+        heights[l['Player_Name']] = l['Phisic']['Height']
+        weights[l['Player_Name']] = l['Phisic']['Weight']
+        positions[l['Player_Name']] = l['Position']
+
+    tparams = {
+        'prates': rates,
+        'images':images,
+        'pages': ages,
+        'pheights':heights,
+        'pweights':weights,
+        'ppos':positions,
+    }
+    return render(request, 'players.html', tparams)
 
 # Retorna todas as posições
 def allPositions(request):
@@ -109,6 +222,64 @@ def allPositions(request):
 
 # Retorna os detalhes de cada jogador (detalhes que aparecem nas cartas)
 def getDetails(request):
+    info = dict()
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+
+    if not 'Player_Name' in request.GET:
+        raise Http404('Jogador não existe!!')
+
+    try:
+        input = """
+                import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                funcs:showDetails('{}')
+                """.format(request.GET['Player_Name'])
+        query = session.query(input)
+        res = query.execute()
+        query.close()
+    finally:
+        if session:
+            session.close()
+    dres = xmltodict.parse(res)
+    lres = dres['Players']['Player']
+
+    if lres['Position'] == 'GK':
+        info['REF'] = lres['REF']
+        info['POS'] = lres['POS']
+        info['DIV'] = lres['DIV']
+        info['SPE'] = lres['SPE']
+        info['KIC'] = lres['KIC']
+        info['HAN'] = lres['HAN']
+        tparams = {
+            'details': info,
+            'name': lres['Player_Name'],
+            'club': lres['Club_Logo'],
+            'nat': lres['Flag'],
+            'rat': lres['Overall'],
+            'pos': lres['Position'],
+            'img': lres['Photo'],
+        }
+        return render(request, "detailsplayerGK.html", tparams)
+
+    else:
+        info['PAS'] = lres['PAS']
+        info['SHO'] = lres['SHO']
+        info['PAC'] = lres['PAC']
+        info['DRI'] = lres['DRI']
+        info['DEF'] = lres['DEF']
+        info['PHY'] = lres['PHY']
+        tparams = {
+            'details': info,
+            'name': lres['Player_Name'],
+            'name_upper': lres['Player_Name'].upper(),
+            'club': lres['Club_Logo'],
+            'nat': lres['Flag'],
+            'rat': lres['Overall'],
+            'pos': lres['Position'],
+            'img': lres['Photo'],
+        }
+        return render(request, "detailsplayer.html", tparams)
+
+def getDetails2(request):
     fn = "app/data/players.xml"
     tree = ET.parse(fn)
 
@@ -243,6 +414,26 @@ def allCountries(request):
         'countries': OrderedDict(sorted(info.items(), key=lambda x: x[0]))
     }
     return render(request, "allCountries.html", tparams)
+
+# Elimina o jogador selecionado
+def deletePlayer(request):
+    session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+    if 'Delete' in request.GET:
+        try:
+            input = """
+                           import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                           funcs:deletePlayer('{}')
+                           """.format(request.GET['Delete'])
+            query = session.query(input)
+            res = query.execute()
+            query.close()
+        finally:
+            if session:
+                session.close()
+    response = redirect("/players")
+    return response
+
+
 
 @register.filter
 def get_item(dict, key):

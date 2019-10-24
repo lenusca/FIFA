@@ -2,13 +2,13 @@
 {% block content %}
 
 <div id="header"  >
-					
-<form style="margin-left: 23cm; font-weight: bold;" >
+
+<form style="margin-left: 23cm; font-weight: bold;" method="post">
+    {% csrf_token %}
     <a>Find out everything about a player:</a>
-    <input class="search" type= 'text' name= "search" placeholder="Players" >
+    <input class="search" type='text' name="search" id="search" placeholder="Players" >
 
 </form>
-
 
 <div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 4.6%;" >
 					

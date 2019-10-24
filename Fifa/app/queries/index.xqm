@@ -1,6 +1,31 @@
 module namespace funcs = "com.funcs.my.index";
 declare namespace map = "http://www.w3.org/2005/xpath-functions/map";
 
+
+declare function funcs:showPlayers() as node() {
+  <Players>{
+     for $c in doc('FIFA')/Players/Player
+      return
+        <Player>
+          <Photo>{$c/Photo/text()}</Photo>
+          <Player_Name>{$c/Player_Name/text()}</Player_Name>
+          <Overall>{$c/Overall/text()}</Overall>
+          <Age>{$c/Age/text()}</Age>
+          <Phisic>
+            <Height>{$c/Phisic/Height/text()}</Height>
+            <Weight>{$c/Phisic/Height/text()}</Weight>
+          </Phisic>
+          <Position>{$c/Position/text()}</Position>
+          <Club>
+            <Club_Name>{$c/Club/Club_Name/text()}</Club_Name>
+          </Club>
+          <Nationality>{$c//Nationality/text()}</Nationality>
+        </Player>
+        
+  }</Players>
+};
+
+
 declare function funcs:orderbyPlayer_Name() as node() {
   <Players>{
   for $c in doc('FIFA')/Players/Player
@@ -40,7 +65,6 @@ declare function funcs:orderbyPlayer_Overall() as node() {
   }</Players>
 };
 
-(:Merge das duas funções anteriores:)
 declare function funcs:orderbyPlayer($choice) as node() {
   <Players>{
       if ($choice = 'overall') then
@@ -88,28 +112,6 @@ declare function funcs:orderbyPlayer($choice) as node() {
   }</Players>
 };
 
-declare function funcs:showPlayers() as node() {
-  <Players>{
-     for $c in doc('FIFA')/Players/Player
-      return
-        <Player>
-          <Photo>{$c/Photo/text()}</Photo>
-          <Player_Name>{$c/Player_Name/text()}</Player_Name>
-          <Overall>{$c/Overall/text()}</Overall>
-          <Age>{$c/Age/text()}</Age>
-          <Phisic>
-            <Height>{$c/Phisic/Height/text()}</Height>
-            <Weight>{$c/Phisic/Height/text()}</Weight>
-          </Phisic>
-          <Position>{$c/Position/text()}</Position>
-          <Club>
-            <Club_Name>{$c/Club/Club_Name/text()}</Club_Name>
-          </Club>
-          <Nationality>{$c/Nationality/text()}</Nationality>
-        </Player>
-        
-  }</Players>
-};
 
 (:mostrar os detalhes do jogador diferencia GK do resto:)
 declare function funcs:showDetails($pname) as node() {
@@ -119,15 +121,27 @@ declare function funcs:showDetails($pname) as node() {
      return
      if ($c/Position = 'GK') then
       <Player>
+       <Player_Name>{$c/Player_Name/text()}</Player_Name>
+       <Photo>{$c/Photo/text()}</Photo>
+       <Flag>{$c//Flag/text()}</Flag>
+       <Club_Logo>{$c/Club/Club_Logo/text()}</Club_Logo>
+       <Overall>{$c/Overall/text()}</Overall>
+       <Position>{$c/Position/text()}</Position>
        <REF>{$c/GKReflexes/text()}</REF>
        <POS>{$c/GKPositioning/text()}</POS>
-       <HEC>{$c/GKDiving/text()}</HEC>
-       <TMP>{$c/ExtraDetails/SprintSpeed/text()}</TMP>
-       <ABS>{$c/GKKicking/text()}</ABS>
-       <BSI>{$c/GKHandling/text()}</BSI>
+       <DIV>{$c/GKDiving/text()}</DIV>
+       <SPE>{$c/ExtraDetails/SprintSpeed/text()}</SPE>
+       <KIC>{$c/GKKicking/text()}</KIC>
+       <HAN>{$c/GKHandling/text()}</HAN>
       </Player>
      else
       <Player>
+        <Player_Name>{$c/Player_Name/text()}</Player_Name>
+        <Photo>{$c/Photo/text()}</Photo>
+        <Flag>{$c//Flag/text()}</Flag>
+        <Club_Logo>{$c/Club/Club_Logo/text()}</Club_Logo>
+        <Overall>{$c/Overall/text()}</Overall>
+        <Position>{$c/Position/text()}</Position>
         <PAS>{round((($c/ExtraDetails/Vision/text())+($c/ExtraDetails/Crossing/text())+($c/ExtraDetails/FKAccuracy/text())+($c/ExtraDetails/ShortPassing/text())+($c/ExtraDetails/LongPassing/text())+($c/ExtraDetails/Curve/text())) div 6)}</PAS>
         <SHO>{round((($c/ExtraDetails/Positioning/text())+($c/ExtraDetails/Finishing/text())+($c/ExtraDetails/ShotPower/text())+($c/ExtraDetails/LongShots/text())+($c/ExtraDetails/Volleys/text())+($c/ExtraDetails/Penalties/text())) div 6)}</SHO>
         <PAC>{round((($c/ExtraDetails/Acceleration/text())+($c/ExtraDetails/SprintSpeed/text())) div 2)}</PAC>
@@ -175,5 +189,119 @@ declare function funcs:orderbyClub() as node() {
        ($c[Club_Name=$x])[1]
   }</Players>
 };
+
+declare function funcs:showPlayersPosition($pos) as node() {
+  <Players>{
+     for $c in doc('FIFA')/Players/Player
+     where $c/Position = $pos
+      return
+        <Player>
+          <Photo>{$c/Photo/text()}</Photo>
+          <Player_Name>{$c/Player_Name/text()}</Player_Name>
+          <Overall>{$c/Overall/text()}</Overall>
+          <Age>{$c/Age/text()}</Age>
+          <Phisic>
+            <Height>{$c/Phisic/Height/text()}</Height>
+            <Weight>{$c/Phisic/Height/text()}</Weight>
+          </Phisic>
+          <Position>{$c/Position/text()}</Position>
+          <Club>
+            <Club_Name>{$c/Club/Club_Name/text()}</Club_Name>
+          </Club>
+          <Nationality>{$c//Nationality/text()}</Nationality>
+        </Player>
+        
+  }</Players>
+};
+
+declare function funcs:showPlayersName($name) as node() {
+  <Players>{
+     for $c in doc('FIFA')/Players/Player
+ 
+     where contains($c/Player_Name, $name)
+      return
+        <Player>
+          
+          <Photo>{$c/Photo/text()}</Photo>
+          <Player_Name>{$c/Player_Name/text()}</Player_Name>
+          <Overall>{$c/Overall/text()}</Overall>
+          <Age>{$c/Age/text()}</Age>
+          <Phisic>
+            <Height>{$c/Phisic/Height/text()}</Height>
+            <Weight>{$c/Phisic/Height/text()}</Weight>
+          </Phisic>
+          <Position>{$c/Position/text()}</Position>
+          <Club>
+            <Club_Name>{$c/Club/Club_Name/text()}</Club_Name>
+          </Club>
+          <Nationality>{$c//Nationality/text()}</Nationality>
+        </Player>
+        
+  }</Players>
+};
+
+declare updating function funcs:editPlayer($name, $position, $age, $rating, $v1, $v2, $v3, $v4, $v5, $v6, $club, $height, $weight){
+  for $c in doc('FIFA')/Players/Player
+  where $c/Player_Name/text() = $name
+  return switch ($position)
+    case "GK"
+      return(
+     replace value of node $c/Age with $age,
+     replace value of node $c/Overall with $rating,
+     replace value of node $c/Club/Club_Name with $club,
+     replace value of node $c//Height with $height,
+     replace value of node $c//Weight with $weight,
+     replace value of node $c/GKReflexes with $v1,
+     replace value of node $c/GKPositioning with $v2,
+     replace value of node $c/GKDiving with $v3,
+     replace value of node $c//SprintSpeed with $v4,
+     replace value of node $c/GKKicking with $v5,
+     replace value of node $c/GKHandling with $v6)
+    default
+      return(
+        replace value of node $c/Age with $age,
+        replace value of node $c/Overall with $rating,
+        replace value of node $c/Club/Club_Logo with distinct-values(funcs:showClubLogo($club)),
+        replace value of node $c//Height with $height,
+        replace value of node $c//Weight with $weight,
+        replace value of node $c//Acceleration with $v1,
+        replace value of node $c//SprintSpeed with $v1,
+        replace value of node $c//Positioning with $v2,
+        replace value of node $c//Finishing with $v2,
+        replace value of node $c//ShotPower with $v2,
+        replace value of node $c//LongShots with $v2,
+        replace value of node $c//Volleys with $v2,
+        replace value of node $c//Penalties with $v2,
+        replace value of node $c//Vision with $v3,
+        replace value of node $c//Crossing with $v3,
+        replace value of node $c//FKAccuracy with $v3,
+        replace value of node $c//ShortPassing with $v3,
+        replace value of node $c//LongPassing with $v3,
+        replace value of node $c//Curve with $v3,
+        replace value of node $c//Agility with $v4,
+        replace value of node $c//Balance with $v4,
+        replace value of node $c//Reactions with $v4,
+        replace value of node $c//BallControl with $v4,
+        replace value of node $c//Dribbling with $v4,
+        replace value of node $c//Composure with $v4,
+        replace value of node $c//Interceptions with $v5,
+        replace value of node $c//HeadingAccuracy with $v5,
+        replace value of node $c//Marking with $v5,
+        replace value of node $c//StandingTackle with $v5,
+        replace value of node $c//SlidingTackle with $v5,
+        replace value of node $c//Jumping with $v6,
+        replace value of node $c//Stamina with $v6,
+        replace value of node $c//Strength with $v6,
+        replace value of node $c//Aggression with $v6     
+    )  
+};
+
+
+declare function funcs:showClubLogo($club) {
+     for $c in doc('FIFA')/Players/Player
+     where $c/Club/Club_Name = $club
+      return $c/Club/Club_Logo/text()
+};
+
 
 

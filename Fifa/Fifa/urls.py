@@ -25,4 +25,5 @@ urlpatterns = [
     path('leagues/', views.allLeagues, name='leagues'),
     path('clubs/', views.allClubs, name='clubs'),
     path('nationalities/', views.allCountries, name='nationalities'),
+    path('delete/', views.deletePlayer)
 ]

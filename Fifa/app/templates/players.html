@@ -7,7 +7,7 @@
 {% block content %}
 
   
-    <body>
+
 
             <div class="limiter">
 					<div class="container-table100">
@@ -23,9 +23,9 @@
 										<th class="column5">AGE</th>
 										<th class="column6">HEIGHT</th>
 										<th class="column7">WEIGHT</th>
-									</tr>
-								</thead>
-								<tbody>
+									    </tr>
+								    </thead>
+								    <tbody>
                                     {% for k,v in prates.items %}
                                         {% with y=pages|get_item:k y1=pheights|get_item:k y2=pweights|get_item:k y3=ppos|get_item:k y4=images|get_item:k %}
 									    <tr>
@@ -39,11 +39,13 @@
 									    </tr>
                                         {% endwith %}
                                     {% endfor %}
-								
-								</tbody>
-						</table>
-				</div>
-			</div>
-		</div>
-	</div>
+								    </tbody>
+						        </table>
+				            </div>
+			            </div>
+		            </div>
+	            </div>
+            <div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 514px;" >
+                                        <p>&copy; Projeto EDC.</p><p>2019/2020</p>
+            </div>
 {% endblock %}
