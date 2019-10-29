@@ -8,24 +8,17 @@
 	<head>
 		
 		<meta charset="utf-8" />
-	
-		<link rel="stylesheet" href="assets/css/main.css" />
+        
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <script src="assets/js/Chart.min.js"></script>
 		
 	</head>
-	<body class="homepage is-preload" >
-		<div >
+	<body class="homepage is-preload">
+		<div>
 			
 			<!-- Header -->
-				<div id="header"  >
-					
-						
-						<form style="margin-left: 23cm; font-weight: bold;" >
-							<a>Find out everything about a player:</a>
-							<input class="search" type= 'text' name= "search" placeholder="Players" >
+				<div id= "header_new" >
 
-						</form>
-				
-					
 					<!-- Nav -->
 					<nav id="nav" style="font-weight: bold;">
 							<ul>
@@ -36,8 +29,8 @@
 										<li><a href="players.html">Players</a></li>
 										<li><a href="clubs.html">Clubs</a></li>
 										<li><a href="nationalities.html">Nacionalities</a></li>
-										<li><a href="positions.html">Positions</a></li>
-										<li><a href="statistics.html">Team Statistics</a></li>
+                                        <li><a href="positions.html">Positions</a></li>
+                                        <li><a href="statistics.html">Team Statistics</a></li>
 										<!--<li>
 											<a href="#">And a submenu &hellip;</a>
 											<ul>
@@ -63,19 +56,37 @@
 							</ul>
 						</nav>
 
-
-
-				
-			</div>
-				<div class="copyright" style="text-align: center; background-color: black; color: white; " >
-					
-						<p>&copy; Projeto EDC.</p><p>2019/2020</p>
-					
+                
 				</div>
+				<div style="margin-bottom: 5%; margin-left: 5%; margin-right: 5%; margin-top: 5%; ">
+                <canvas id="myChart" width="400" height="200"></canvas>
+			    <script type="text/javascript">
+				    var canvas = document.getElementById('myChart');
+				    var data = { labels: ["SL Benfica", "Sporting CP", "FC Porto", "Juventus", "Real Madrid", "FC Barcelona", "Liverpool", "Arsenal", "Chelsea FC", "Manchester City"],
+    						    datasets: [{
+						            label: "Overall per Club",
+						            backgroundColor: "rgba(255,99,132,0.2)",
+						            borderColor: "rgba(255,99,132,1)",
+						            borderWidth: 1,
+						            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+						            hoverBorderColor: "rgba(255,99,132,1)",
+						            data: [65, 59, 60, 81, 56, 55, 40, 72, 84, 93],
+						        }]};
 
-			
+				    var option = { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } };
 
-		</div>
+				    var myBarChart = Chart.Line(canvas,{data:data,options:option});
+
+			    </script>
+                </div>
+            </div>
+            
+
+		<div class="copyright" style="text-align: center; background-color: black; color: white;" >
+					
+			<p>&copy; Projeto EDC.</p><p>2019/2020</p>
+		
+	</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
