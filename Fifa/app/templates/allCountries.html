@@ -1,7 +1,103 @@
-{% block content %}
-    <ul>
-        {% for k, v in countries.items %}
-            <li><img src="{{ v }}"><a href = "/players?Nationality={{ k }}" > {{ k }}</a></li>
-        {% endfor %}
-    </ul>
-{% endblock %}
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+
+		<meta charset="utf-8" />
+
+	    {% load staticfiles %}
+		<link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
+        <script type="text/javascript" src='{% static "assets/js/mapdata.js" %}'></script>
+        <script type="text/javascript" src='{% static "assets/js/worldmap.js" %}'></script>
+        <style>
+                .background {
+                    background-image:  url("{% static 'images/background.png' %}");
+                    background-position: top;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-attachment: fixed;
+
+
+                }
+
+        </style>
+
+
+
+	</head>
+	<body class="background">
+		<div>
+
+			<!-- Header -->
+				<div id= "header_new" >
+
+					<!-- Nav -->
+					<nav id="nav" style="font-weight: bold;">
+							<ul>
+								<li><a href="/" style="color: white; font-weight: bold;">Home</a></li>
+								<li>
+									<a style="color: white; font-weight: bold;">Advanced Search</a>
+									<ul>
+										<li><a href="/players/">Players</a></li>
+										<li><a href="clubs.html">Clubs</a></li>
+										<li><a href="/nationalities/">Nationalities</a></li>
+										<li><a href="/positions/">Positions</a></li>
+										<!--<li>
+											<a href="#">And a submenu &hellip;</a>
+											<ul>
+												<li><a href="#">Lorem ipsum dolor</a></li>
+												<li><a href="#">Phasellus consequat</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Etiam dolore nisl</a></li>
+											</ul>
+										</li>-->
+									</ul>
+								</li>
+								<li><a style="color: white; font-weight: bold;" href="cards.html">Player Cards</a></li>
+								<li>
+									<a style="color: white; font-weight: bold;">Add</a>
+									<ul>
+										<li><a href="addPlayer.html">Player</a></li>
+										<li><a href="addGK.html">Goalkeeper</a></li>
+										<li><a href="addClub.html">Add a Club</a></li>
+									</ul>
+								</li>
+
+								<li><a style="color: white; font-weight: bold;" href="editPlayer.html">Edit Player</a></li>
+							</ul>
+						</nav>
+
+
+
+				</div>
+
+
+
+
+		</div>
+
+		<div id="map" style ="top: 18%; left: 5%;position: absolute; "></div>
+
+		<div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 38.5%" >
+
+			<p>&copy; Projeto EDC.</p><p>2019/2020</p>
+
+	</div>
+
+		<!-- Scripts -->
+			<script src='{% static "assets/js/jquery.min.js"%}'></script>
+		    <script src='{% static "assets/js/jquery.dropotron.min.js"%}'></script>
+		    <script src='{% static "assets/js/jquery.scrolly.min.js"%}'></script>
+            <script src='{% static "assets/js/jquery.scrollex.min.js"%}'></script>
+		    <script src='{% static "assets/js/browser.min.js"%}'></script>
+		    <script src='{% static "assets/js/breakpoints.min.js"%}'></script>
+		    <script src='{% static "assets/js/util.js"%}'></script>
+		    <script src='{% static "assets/js/main.js"%}'></script>
+
+
+	</body>
+</html>

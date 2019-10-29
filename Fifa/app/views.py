@@ -166,8 +166,34 @@ def players(request):
 
         dres = xmltodict.parse(res)
 
+    elif 'Nationality' in request.GET:
+        try:
+            input = """
+                       import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                       funcs:showPlayersNationality('{}')
+                       """.format(request.GET['Nationality'])
+            query = session.query(input)
+            res = query.execute()
+            query.close()
+        finally:
+            if session:
+                session.close()
 
+        dres = xmltodict.parse(res)
+    elif 'Choice' in request.GET:
+        try:
+            input = """
+                       import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                       funcs:orderbyPlayer('{}')
+                       """.format(request.GET['Choice'])
+            query = session.query(input)
+            res = query.execute()
+            query.close()
+        finally:
+            if session:
+                session.close()
 
+        dres = xmltodict.parse(res)
     else:
 
         try:
@@ -184,15 +210,18 @@ def players(request):
 
         dres = xmltodict.parse(res)
 
-    lres = dres['Players']['Player']
 
-    for l in lres:
-        rates[l['Player_Name']] = l['Overall']   
-        images[l['Player_Name']] = l['Photo']
-        ages[l['Player_Name']] = l['Age']
-        heights[l['Player_Name']] = l['Phisic']['Height']
-        weights[l['Player_Name']] = l['Phisic']['Weight']
-        positions[l['Player_Name']] = l['Position']
+    if(dres['Players'] != None):
+        lres = dres['Players']['Player']
+        for l in lres:
+            rates[l['Player_Name']] = l['Overall']
+            images[l['Player_Name']] = l['Photo']
+            ages[l['Player_Name']] = l['Age']
+            heights[l['Player_Name']] = l['Phisic']['Height']
+            weights[l['Player_Name']] = l['Phisic']['Weight']
+            positions[l['Player_Name']] = l['Position']
+    else:
+        raise Http404('País sem jogador!!')
 
     tparams = {
         'prates': rates,
@@ -432,8 +461,6 @@ def deletePlayer(request):
                 session.close()
     response = redirect("/players")
     return response
-
-
 
 @register.filter
 def get_item(dict, key):
