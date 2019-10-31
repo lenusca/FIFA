@@ -6,6 +6,7 @@ from lxml import etree as ET
 from collections import OrderedDict
 import xmltodict
 from BaseXClient import BaseXClient
+import random
 #from django.shortcuts import render_to_response
 
 
@@ -80,12 +81,12 @@ def index(request):
                 positions[l['Player_Name']] = l['Position']
 
         tparams = {
-            'prates': rates,
-            'images': images,
-            'pages': ages,
-            'pheights': heights,
-            'pweights': weights,
-            'ppos': positions,
+            'prates': rates[0:10],
+            'images': images[0:10],
+            'pages': ages[0:10],
+            'pheights': heights[0:10],
+            'pweights': weights[0:10],
+            'ppos': positions[0:10],
         }
         return render(request, 'players.html', tparams)
 
@@ -224,12 +225,12 @@ def players(request):
         raise Http404('País sem jogador!!')
 
     tparams = {
-        'prates': rates,
-        'images':images,
+        'prates': rates.items(10),
+        'images': images,
         'pages': ages,
-        'pheights':heights,
-        'pweights':weights,
-        'ppos':positions,
+        'pheights': heights.items(10),
+        'pweights': weights,
+        'ppos': positions,
     }
     return render(request, 'players.html', tparams)
 
@@ -461,6 +462,53 @@ def deletePlayer(request):
                 session.close()
     response = redirect("/players")
     return response
+
+# Estatisticas dos clubes
+def statistics(request):
+    fn = "app/data/players.xml"
+    tree = ET.parse(fn)
+    query1 = ".//Club"
+    tover = 0
+    count = 0
+    media = 0
+    clubs_array = []
+    overall_array = []
+
+    clubs = tree.xpath(query1)
+    for c in clubs:
+        if c.find('Club_Name').text not in clubs_array and c.find('Club_Name').text != None:
+            clubs_array.append(c.find('Club_Name').text)
+    random.shuffle(clubs_array)
+    for i in clubs_array[0:10]:
+        session = BaseXClient.Session('localhost', 1984, 'admin', 'admin')
+        try:
+            input = """
+                           import module namespace funcs="com.funcs.my.index" at "index.xqm";
+                           funcs:showOverallForClub('{}')
+                           """.format(i)
+            query = session.query(input)
+            res = query.execute()
+            query.close()
+        finally:
+            if session:
+                session.close()
+        dres = xmltodict.parse(res)
+        lres = dres['Club']['overall']
+        for o in lres:
+            tover = tover + int(o)
+            count = count + 1
+
+        media = tover / count
+        overall_array.append(media)
+
+
+    tparams = {
+       'overall': overall_array,
+       'clubs': str(clubs_array[0:10]).replace("'", '"')
+    }
+
+    return render(request, "statistics.html", tparams)
+
 
 @register.filter
 def get_item(dict, key):

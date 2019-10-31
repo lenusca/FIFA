@@ -1,22 +1,17 @@
 <!DOCTYPE HTML>
-<!--
-	Helios by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
-
+		
 		<meta charset="utf-8" />
+        {% load staticfiles %}
+        <link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
+        <script src='{% static "assets/js/Chart.min.js"%}'></script>
 
-	    {% load staticfiles %}
-		<link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
-        <script type="text/javascript" src='{% static "assets/js/mapdata.js" %}'></script>
-        <script type="text/javascript" src='{% static "assets/js/worldmap.js" %}'></script>
         <style>
                 .background {
-                    background-image:  url("{% static 'images/background.png' %}");
-                    background-position: top;
+                    background-image:  url("{% static 'images/background1.jpg' %}");
+                    background-position: bottom;
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-attachment: fixed;
@@ -25,15 +20,13 @@
                 }
 
         </style>
-
-
-
+		
 	</head>
 	<body class="background">
 		<div>
-
+			
 			<!-- Header -->
-				<div id= "header_new" >
+				<div id= "header_new" style="padding: 1.6em 0 1.6em 0em; " >
 
 					<!-- Nav -->
 					<nav id="nav" style="font-weight: bold;">
@@ -61,22 +54,50 @@
 								<li><a style="color: white; font-weight: bold;" href="templates/editPlayer.html">Edit Player</a></li>
 							</ul>
 						</nav>
-
-
-
 				</div>
+				<div style="margin-bottom: 7.5%; margin-left: 5%; margin-right: 5%; margin-top: 5%; ">
+                <canvas id="myChart" width="400" height="128"></canvas>
+			    <script type="text/javascript">
+				    var canvas = document.getElementById('myChart');
+
+				    var data = { labels: {{ clubs | safe }},
+
+                                label_color:"#000000",
+    						    datasets: [{
+						            label: "Overall per Club",
+						            backgroundColor: "rgba(255,99,132,0.5)",
+						            borderColor: "rgba(255,99,132,1)",
+						            borderWidth: 1,
+
+                                    labelTextColor:"#000000",
+						            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+						            hoverBorderColor: "rgba(255,99,132,1)",
+						            data: {{ overall }},
+						        }]};
+
+				    var option = { scales: { yAxes: [{ ticks: {
+				        fontColor:"rgba(0,0,0,1)",
+                        fontSize:15,
+
+				        beginAtZero: false } }],
+                        xAxes: [{ ticks: {
+				        fontColor:"rgba(0,0,0,1)",
+                        fontSize:15,
+
+				        beginAtZero: false } }]} };
 
 
+				    var myBarChart = Chart.Line(canvas,{data:data,options:option});
 
+			    </script>
+                </div>
+            </div>
+            
 
-		</div>
-
-		<div id="map" style ="top: 18%; left: 5%;position: absolute; "></div>
-
-		<div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 45%" >
-
+		<div class="copyright" style="text-align: center; background-color: black; color: white;" >
+					
 			<p>&copy; Projeto EDC.</p><p>2019/2020</p>
-
+		
 	</div>
 
 		<!-- Scripts -->
@@ -88,7 +109,6 @@
 		    <script src='{% static "assets/js/breakpoints.min.js"%}'></script>
 		    <script src='{% static "assets/js/util.js"%}'></script>
 		    <script src='{% static "assets/js/main.js"%}'></script>
-
 
 	</body>
 </html>

@@ -1,5 +1,5 @@
 module namespace funcs = "com.funcs.my.index";
-declare namespace map = "http://www.w3.org/2005/xpath-functions/map";
+
 
 
 declare function funcs:showPlayers() as node() {
@@ -113,12 +113,12 @@ declare function funcs:orderbyPlayer($choice) as node() {
 };
 
 
-(:mostrar os detalhes do jogador diferencia GK do resto:)
 declare function funcs:showDetails($pname) as node() {
   <Players>{
      for $c in doc('FIFA')/Players/Player
      where $c/Player_Name = $pname
      return
+(:mostrar os detalhes do jogador diferencia GK do resto:)
      if ($c/Position = 'GK') then
       <Player>
        <Player_Name>{$c/Player_Name/text()}</Player_Name>
@@ -153,7 +153,6 @@ declare function funcs:showDetails($pname) as node() {
 };
 
 declare updating function funcs:deleteClub($clubName) {
-  (:eliminar só o texto do elemento, não o elemento:)
   let $d := doc('FIFA')/Players
   for $e in $d/Player/Club[Club_Name/text()=$clubName]
     return delete node $e//text()
@@ -242,6 +241,7 @@ declare function funcs:showPlayersName($name) as node() {
 };
 
 declare updating function funcs:editPlayer($name, $position, $age, $rating, $v1, $v2, $v3, $v4, $v5, $v6, $club, $height, $weight){
+  (:testar novamente e ver o resultado, não sei se não tenho colocar mesmo text:)
   for $c in doc('FIFA')/Players/Player
   where $c/Player_Name/text() = $name
   return switch ($position)
@@ -328,4 +328,35 @@ declare function funcs:showPlayersNationality($nat) as node() {
   }</Players>
 };
 
+declare function funcs:showPlayersClub($club) as node(){
+   <Players>{
+     for $c in doc('FIFA')/Players/Player
+     where $c/Club/Club_Name = $club
+      return
+        <Player>
+          <Photo>{$c/Photo/text()}</Photo>
+          <Player_Name>{$c/Player_Name/text()}</Player_Name>
+          <Overall>{$c/Overall/text()}</Overall>
+          <Age>{$c/Age/text()}</Age>
+          <Phisic>
+            <Height>{$c/Phisic/Height/text()}</Height>
+            <Weight>{$c/Phisic/Height/text()}</Weight>
+          </Phisic>
+          <Position>{$c/Position/text()}</Position>
+          <Club>
+            <Club_Name>{$c/Club/Club_Name/text()}</Club_Name>
+          </Club>
+          <Nationality>{$c//Nationality/text()}</Nationality>
+        </Player>
+        
+  }</Players>
+};
+
+declare function funcs:showOverallForClub($club) as node() {
+  <Players>{
+    for $c in doc('FIFA')/Players/Player where $c//Club_Name = $club
+     return
+        <overall>{$c/Overall}</overall>
+  }</Players>
+};
 

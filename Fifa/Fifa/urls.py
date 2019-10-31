@@ -23,7 +23,7 @@ urlpatterns = [
     path('positions/', views.allPositions, name='positions'),
     path('getDetails/', views.getDetails, name='details'),
     path('leagues/', views.allLeagues, name='leagues'),
-    path('clubs/', views.allClubs, name='clubs'),
+    path('statistics/', views.statistics, name='clubs'),
     path('nationalities/', views.allCountries, name='nationalities'),
     path('delete/', views.deletePlayer)
 ]
