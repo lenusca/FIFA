@@ -1,29 +1,16 @@
 <!DOCTYPE HTML>
-<!--
-	Helios by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 
 		<meta charset="utf-8" />
+        {% load staticfiles %}
+        <link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
+        <script src='{% static "assets/js/Chart.min.js"%}'></script>
+        <title>FIFA19</title>
 
-	    {% load staticfiles %}
-		<link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
-        <script type="text/javascript" src='{% static "assets/js/mapdata.js" %}'></script>
-        <script type="text/javascript" src='{% static "assets/js/worldmap.js" %}'></script>
-        <style>
-                .background {
-                    background-image:  url("{% static 'images/background.png' %}");
-                    background-position: top;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    background-attachment: fixed;
-                }
-        </style>
 	</head>
-	<body class="background">
+	<body style="background-color: #58D3F7">
 		<div>
 
 			<!-- Header -->
@@ -57,15 +44,53 @@
 						</nav>
 				</div>
 
-		</div>
+            <div class="column"  style=" position: relative; text-align: center;  top: 50%;  border-top: 15px;  border-left: 15px solid;  border-bottom: 5px solid;   color : #58D3F7;
+  border-top:15px solid  ">
 
-		<div id="map" style ="top: 18%; left: 5%;position: absolute; "></div>
+    {% if feed.items %}
+        <p></p>
 
-		<div class="copyright" style="text-align: center; background-color: black; color: white; margin-top: 41%" >
+    {% for item in feed.items %}
+        <div   class=column style="position: relative; text-align: justify-all;
+     padding-left: 30px;
+     padding-top: 15px;
+     padding-right: 30px;
+     top: 50%; border-right: 50px;
+     border-top: 5px solid;
+     padding-bottom: 15px;
+     border-bottom:15px solid;
+     border-left: 50px;
+     background: #2f2f2f;
+     @media screen and max-width: 900px
+     ">
+        <p>
+
+            <h3 style="color: #ffffff">{{ item.title }}</h3>
+            <h3 style="color: #ffffff; font-size: medium">{{ item.published}}</h3>
+            {% if item.media_content %}
+            {% for img in item.media_content %}
+            <img src="{{ img.url }}" height="100px"/>
+            {% endfor %}
+            {% endif %}
+            {% if item.media_text %}
+                <div style="padding-left: 5px; padding-top: 5px; color: #ffffff"> {{ item.media_text}}</div>
+
+            {% endif %}
+
+            <div style="padding-left: 5px; padding-top: 5px"><a href="{{ item.link }}">[+]More Info</a></div>
+        </p>
+    </div>
+    {% endfor %}
+    {% endif %}
+        </div>
+        </div>
+
+
+		<div class="copyright" style="text-align: center; background-color: black; color: white;" >
 
 			<p>&copy; Projeto EDC.</p><p>2019/2020</p>
 
-	</div>
+	    </div>
 
 		<!-- Scripts -->
 			<script src='{% static "assets/js/jquery.min.js"%}'></script>
@@ -76,8 +101,6 @@
 		    <script src='{% static "assets/js/breakpoints.min.js"%}'></script>
 		    <script src='{% static "assets/js/util.js"%}'></script>
 		    <script src='{% static "assets/js/main.js"%}'></script>
-
-
 
 	</body>
 </html>

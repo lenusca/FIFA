@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpRequest
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.template.defaulttags import register
@@ -7,6 +7,7 @@ from collections import OrderedDict
 import xmltodict
 from BaseXClient import BaseXClient
 import random
+import feedparser
 #from django.shortcuts import render_to_response
 
 
@@ -81,12 +82,12 @@ def index(request):
                 positions[l['Player_Name']] = l['Position']
 
         tparams = {
-            'prates': rates[0:10],
-            'images': images[0:10],
-            'pages': ages[0:10],
-            'pheights': heights[0:10],
-            'pweights': weights[0:10],
-            'ppos': positions[0:10],
+            'prates': rates,
+            'images': images,
+            'pages': ages,
+            'pheights': heights,
+            'pweights': weights,
+            'ppos': positions,
         }
         return render(request, 'players.html', tparams)
 
@@ -144,6 +145,7 @@ def players2(request):
     return render(request, "players.html", tparams)
 
 def players(request):
+    count = 0
     images = dict()
     rates = dict()
     positions = dict()
@@ -215,20 +217,26 @@ def players(request):
     if(dres['Players'] != None):
         lres = dres['Players']['Player']
         for l in lres:
+            count += 1
             rates[l['Player_Name']] = l['Overall']
             images[l['Player_Name']] = l['Photo']
             ages[l['Player_Name']] = l['Age']
             heights[l['Player_Name']] = l['Phisic']['Height']
             weights[l['Player_Name']] = l['Phisic']['Weight']
             positions[l['Player_Name']] = l['Position']
+
+            if(count == 10):
+                break
+
+
     else:
         raise Http404('País sem jogador!!')
 
     tparams = {
-        'prates': rates.items(10),
+        'prates': rates,
         'images': images,
         'pages': ages,
-        'pheights': heights.items(10),
+        'pheights': heights,
         'pweights': weights,
         'ppos': positions,
     }
@@ -509,6 +517,22 @@ def statistics(request):
 
     return render(request, "statistics.html", tparams)
 
+def news(request):
+    assert isinstance(request, HttpRequest)
+    if(request.GET['select'] == 'a'):
+        feed = feedparser.parse('https://www.fifa.com/rss-feeds/news')
+    elif (request.GET['select'] == 'b'):
+        feed = feedparser.parse('https://www.fifa.com/the-best-fifa-football-awards/rss/news')
+    elif (request.GET['select'] == 'c'):
+        feed = feedparser.parse('https://www.fifa.com/about-fifa/who-we-are/rss/news')
+    tparams = {
+        'feed': feed,
+    }
+    return render(request, 'news1.html',tparams)
+
+def news1(request):
+
+    return render(request, 'news.html')
 
 @register.filter
 def get_item(dict, key):
