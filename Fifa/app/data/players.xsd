@@ -21,51 +21,51 @@
   </xs:complexType>
   <xs:complexType name="ExtraDetailsType">
     <xs:sequence>
-      <xs:element type="xs:string" name="Crossing"/>
-      <xs:element type="xs:string" name="Finishing"/>
-      <xs:element type="xs:string" name="HeadingAccuracy"/>
-      <xs:element type="xs:string" name="ShortPassing"/>
-      <xs:element type="xs:string" name="Volleys"/>
-      <xs:element type="xs:string" name="Dribbling"/>
-      <xs:element type="xs:string" name="Curve"/>
-      <xs:element type="xs:string" name="FKAccuracy"/>
-      <xs:element type="xs:string" name="LongPassing"/>
-      <xs:element type="xs:string" name="BallControl"/>
-      <xs:element type="xs:string" name="Acceleration"/>
-      <xs:element type="xs:string" name="SprintSpeed"/>
-      <xs:element type="xs:string" name="Agility"/>
-      <xs:element type="xs:string" name="Reactions"/>
-      <xs:element type="xs:string" name="Balance"/>
-      <xs:element type="xs:string" name="ShotPower"/>
-      <xs:element type="xs:string" name="Jumping"/>
-      <xs:element type="xs:string" name="Stamina"/>
-      <xs:element type="xs:string" name="Strength"/>
-      <xs:element type="xs:string" name="LongShots"/>
-      <xs:element type="xs:string" name="Aggression"/>
-      <xs:element type="xs:string" name="Interceptions"/>
-      <xs:element type="xs:string" name="Positioning"/>
-      <xs:element type="xs:string" name="Vision"/>
-      <xs:element type="xs:string" name="Penalties"/>
-      <xs:element type="xs:string" name="Composure"/>
-      <xs:element type="xs:string" name="Marking"/>
-      <xs:element type="xs:string" name="StandingTackle"/>
-      <xs:element type="xs:string" name="SlidingTackle"/>
+      <xs:element type="xs:int" name="Crossing"/>
+      <xs:element type="xs:int" name="Finishing"/>
+      <xs:element type="xs:int" name="HeadingAccuracy"/>
+      <xs:element type="xs:int" name="ShortPassing"/>
+      <xs:element type="xs:int" name="Volleys"/>
+      <xs:element type="xs:int" name="Dribbling"/>
+      <xs:element type="xs:int" name="Curve"/>
+      <xs:element type="xs:int" name="FKAccuracy"/>
+      <xs:element type="xs:int" name="LongPassing"/>
+      <xs:element type="xs:int" name="BallControl"/>
+      <xs:element type="xs:int" name="Acceleration"/>
+      <xs:element type="xs:int" name="SprintSpeed"/>
+      <xs:element type="xs:int" name="Agility"/>
+      <xs:element type="xs:int" name="Reactions"/>
+      <xs:element type="xs:int" name="Balance"/>
+      <xs:element type="xs:int" name="ShotPower"/>
+      <xs:element type="xs:int" name="Jumping"/>
+      <xs:element type="xs:int" name="Stamina"/>
+      <xs:element type="xs:int" name="Strength"/>
+      <xs:element type="xs:int" name="LongShots"/>
+      <xs:element type="xs:int" name="Aggression"/>
+      <xs:element type="xs:int" name="Interceptions"/>
+      <xs:element type="xs:int" name="Positioning"/>
+      <xs:element type="xs:int" name="Vision"/>
+      <xs:element type="xs:int" name="Penalties"/>
+      <xs:element type="xs:int" name="Composure"/>
+      <xs:element type="xs:int" name="Marking"/>
+      <xs:element type="xs:int" name="StandingTackle"/>
+      <xs:element type="xs:int" name="SlidingTackle"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="PlayerType">
     <xs:sequence>
-      <xs:element type="xs:string" name="count"/>
-      <xs:element type="xs:string" name="ID"/>
+      <xs:element type="xs:int" name="count"/>
+      <xs:element type="xs:int" name="ID"/>
       <xs:element type="xs:string" name="Player_Name"/>
-      <xs:element type="xs:string" name="Age"/>
+      <xs:element type="xs:int" name="Age"/>
       <xs:element type="xs:string" name="Photo"/>
       <xs:element type="CountryType" name="Country"/>
-      <xs:element type="xs:string" name="Overall"/>
-      <xs:element type="xs:string" name="Potential"/>
+      <xs:element type="xs:int" name="Overall"/>
+      <xs:element type="xs:int" name="Potential"/>
       <xs:element type="ClubType" name="Club"/>
       <xs:element type="xs:string" name="Value"/>
       <xs:element type="xs:string" name="Wage"/>
-      <xs:element type="xs:string" name="Special"/>
+      <xs:element type="xs:int" name="Special"/>
       <xs:element name="Preferred_Foot">
         <xs:simpleType>
           <xs:restriction base="xs:string">

@@ -534,6 +534,18 @@ def news1(request):
 
     return render(request, 'news.html')
 
+
+def table(request):
+    dom = "app/data/players.xml"
+    xslt = "app/data/table.xsl"
+    transform = ET.XSLT(xslt)
+    newdom = transform(dom)
+
+    outfile = open('app/templates/tabelas.html', 'wb')
+    outfile.write(ET.tostring(transform))
+    webbrowser.open_new_tab('app/templates/tabelas.html')
+    return redirect('/')
+
 @register.filter
 def get_item(dict, key):
     return dict.get(key)
