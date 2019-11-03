@@ -23,7 +23,7 @@
                             <th>HEIGHT</th>
                             <th>WEIGHT</th>
                         </tr>
-                        <xsl:for-each select="Players" >
+                        <xsl:for-each select="Player" >
                             <xsl:sort select="Overall" /> <!-- data-type="number" /> -->
                             <tr>
                                     <td>

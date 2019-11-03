@@ -28,5 +28,6 @@ urlpatterns = [
     path('nationalities/', views.allCountries, name='nationalities'),
     path('delete/', views.deletePlayer),
     path('news/', views.news1),
-    path('news1/', views.news)
+    path('news1/', views.news),
+    path('download/',views.table, name= 'download'),
 ]

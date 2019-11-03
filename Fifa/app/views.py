@@ -1,3 +1,4 @@
+import webbrowser
 from django.http import Http404, HttpRequest
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -534,16 +535,15 @@ def news1(request):
 
     return render(request, 'news.html')
 
-
 def table(request):
-    dom = "app/data/players.xml"
-    xslt = "app/data/table.xsl"
+    dom = ET.parse("app/data/players.xml")
+    xslt = ET.parse("app/data/table.xsl")
     transform = ET.XSLT(xslt)
     newdom = transform(dom)
 
-    outfile = open('app/templates/tabelas.html', 'wb')
-    outfile.write(ET.tostring(transform))
-    webbrowser.open_new_tab('app/templates/tabelas.html')
+    outfile = open('app/templates/playerstable.html', 'wb')
+    outfile.write(ET.tostring(newdom))
+    webbrowser.open_new_tab('app/templates/playerstable.html')
     return redirect('/')
 
 @register.filter
